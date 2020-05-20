@@ -2,7 +2,7 @@ package main.com.vendingmachine.view;
 
 import java.util.List;
 import main.com.vendingmachine.dto.Item;
-import main.com.vendingmachine.Exceptions.NoItemInventoryException;
+import java.math.BigDecimal;
 
 public class Vending_Machine_View {
 
@@ -39,6 +39,11 @@ public class Vending_Machine_View {
         return io.readString("Enter Item Name.");
     }
 
+    public BigDecimal insertMoney(){
+        io.print(" = = = = = INSERTING MONEY = = = = =");
+        return io.readBigDecimal("How much money would you like to insert?");
+    }
+
     public void buyItem(Item item){
         io.print("You purchased 1 " + item.getName());
     }
@@ -51,11 +56,6 @@ public class Vending_Machine_View {
     public void getItemQuantity(Item item){
         io.print(" = = = = = SHOWING ITEM QUANTITY = = = = =");
         io.print("There are " + Integer.toString(item.getQuantity()) + " " + item.getName() + " remaining.");
-    }
-
-    public void insertMoney(Double money){
-        io.print(" = = = = = INSERTING MONEY = = = = =");
-        io.print( "You have inserted $" + money );
     }
 
     public void exitMsg(){

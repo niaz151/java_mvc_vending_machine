@@ -1,4 +1,4 @@
-package main.com.vendingmachine.Exceptions;
+package main.com.vendingmachine.exceptions;
 
 public class NoItemInventoryException extends Exception{
     public NoItemInventoryException(String msg){

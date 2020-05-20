@@ -1,7 +1,7 @@
 package main.com.vendingmachine.dao;
 
 import main.com.vendingmachine.dto.Item;
-import main.com.vendingmachine.Exceptions.NoItemInventoryException;
+import main.com.vendingmachine.exceptions.NoItemInventoryException;
 import java.util.List;
 import java.util.HashMap;
 import java.util.ArrayList;

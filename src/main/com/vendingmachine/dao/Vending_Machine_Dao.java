@@ -2,7 +2,7 @@ package main.com.vendingmachine.dao;
 
 import java.util.List;
 
-import main.com.vendingmachine.Exceptions.NoItemInventoryException;
+import main.com.vendingmachine.exceptions.NoItemInventoryException;
 import main.com.vendingmachine.dto.Item;
 
 public interface Vending_Machine_Dao {
