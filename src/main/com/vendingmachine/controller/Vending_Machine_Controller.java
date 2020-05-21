@@ -6,6 +6,8 @@ import main.com.vendingmachine.view.*;
 import main.com.vendingmachine.service.*;
 import main.com.vendingmachine.exceptions.NoItemInventoryException;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class Vending_Machine_Controller {
         this.view = view;
     }
 
-    public void run() throws NoItemInventoryException, InsufficientFundsException {
+    public void run() throws NoItemInventoryException, InsufficientFundsException, IOException {
 
         boolean keepGoing = true;
         int menuSelection;
@@ -62,7 +64,7 @@ public class Vending_Machine_Controller {
         }
     }
 
-    public void initializeMachine(){
+    public void initializeMachine() throws FileNotFoundException {
         service.initialize();
         view.welcomeMsg();
     }
@@ -110,7 +112,8 @@ public class Vending_Machine_Controller {
         view.showFunds(funds);
     }
 
-    public void exitMessage(){
+    public void exitMessage() throws IOException {
+        service.updateText();
         view.exitMsg();
     }
 

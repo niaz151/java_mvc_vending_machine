@@ -1,5 +1,0 @@
-Cheetos | 7 | 1.25
-Snickers | 10 | 1.00
-Doritos | 15 | 1.50
-Cookie | 5 | 2.00
-Crackers | 12 | 0.50

@@ -8,9 +8,12 @@ import main.com.vendingmachine.view.*;
 import main.com.vendingmachine.dao.*;
 import main.com.vendingmachine.controller.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class App {
 
-    public static void main(String[] args) throws NoItemInventoryException, InsufficientFundsException {
+    public static void main(String[] args) throws NoItemInventoryException, InsufficientFundsException, IOException {
         Vending_Machine_IO io = new Vending_Machine_IO_Impl();
         Vending_Machine_Dao dao = new Vending_Machine_Dao_Impl();
         Vending_Machine_Service service = new Vending_Machine_Service_Impl(dao);
