@@ -77,5 +77,32 @@ public class Vending_Machine_View {
 
     public void seperator(){ io.print(" = = = = = = = = = = = = = = = = = ="); }
 
-
+    public void getChange(String[] arr){
+        io.print("= = = = = = = YOUR CHANGE = = = = = = = ");
+        for(int i = 0; i < arr.length; i++){
+            switch(i){
+                case 0:
+                    if(Integer.parseInt(arr[0]) > 0){
+                        io.print(arr[i] + " Quarters");
+                    }
+                    break;
+                case 1:
+                    if(Integer.parseInt(arr[1]) > 0){
+                        io.print(arr[i] + " Dimes");
+                    }
+                    break;
+                case 2:
+                    if(Integer.parseInt(arr[2]) > 0){
+                        io.print(arr[i] + " Nickels");
+                    }
+                    break;
+                case 3:
+                    if(Integer.parseInt(arr[3]) > 0){
+                        io.print(arr[i] + " Pennies");
+                    }
+                    break;
+                default:
+            }
+        }
+    }
 }

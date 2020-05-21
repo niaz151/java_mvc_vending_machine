@@ -24,4 +24,6 @@ public interface Vending_Machine_Service {
 
     BigDecimal getFunds();
 
+    String[] getChange();
+
 }

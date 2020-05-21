@@ -78,7 +78,7 @@ public class Vending_Machine_Controller {
         Item item = service.buyItem(item_name);
         view.buyItem(item);
         BigDecimal funds = service.getFunds();
-        view.showFunds(funds);
+        getChange();
         view.seperator();
     }
 
@@ -115,6 +115,11 @@ public class Vending_Machine_Controller {
     public void exitMessage() throws IOException {
         service.updateText();
         view.exitMsg();
+    }
+
+    public void getChange(){
+        String[] change_arr = service.getChange();
+        view.getChange(change_arr);
     }
 
     public void unknownCommand(){

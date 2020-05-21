@@ -56,7 +56,6 @@ public class Vending_Machine_Dao_Impl implements  Vending_Machine_Dao{
     @Override
     public void updateText() throws IOException {
         BufferedWriter myObj = new BufferedWriter(new FileWriter("src/main/./com/vendingmachine/inventory.txt"));
-        System.out.println(item_list.values().size());
         for(Item item: item_list.values()){
             String item_name = item.getName();
             String item_quantity = Integer.toString(item.getQuantity());

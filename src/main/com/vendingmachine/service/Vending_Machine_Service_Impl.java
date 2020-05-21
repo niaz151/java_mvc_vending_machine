@@ -59,4 +59,28 @@ public class Vending_Machine_Service_Impl implements Vending_Machine_Service {
         return this.funds;
     }
 
+    @Override
+    public String[] getChange(){
+
+        BigDecimal penny_change = funds.multiply(new BigDecimal("100"));
+        BigDecimal quarter_change = penny_change.divide(new BigDecimal("25"));
+        penny_change = penny_change.remainder(new BigDecimal("25"));
+        BigDecimal dime_change = penny_change.divide(new BigDecimal("10"));
+        penny_change = penny_change.remainder(new BigDecimal("10"));
+        BigDecimal nickel_change = penny_change.divide(new BigDecimal("5"));
+        penny_change = penny_change.remainder(new BigDecimal(5));
+
+        String quarters = Integer.toString(quarter_change.intValue());
+        System.out.println(quarters);
+        String dimes = Integer.toString(dime_change.intValue());
+        System.out.println(dimes);
+        String nickels = Integer.toString(nickel_change.intValue());
+        System.out.println(nickels);
+        String pennies = Integer.toString(penny_change.intValue());
+        System.out.println(pennies);
+        String[] output = new String[]{quarters, dimes, nickels, pennies};
+
+        return output;
+    }
+
 }
