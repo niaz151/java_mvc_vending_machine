@@ -19,20 +19,9 @@ public class Vending_Machine_View {
         io.print("3. Check Item Quantity");
         io.print("4. Show All Items");
         io.print("5. Insert Money");
-        io.print("6. Exit");
+        io.print("6. Show Balance");
+        io.print("7. Exit");
         return io.readInt("Please select from the above choices.");
-    }
-
-    public void showAllItems(List<Item> items){
-        for(Item item: items){
-            if(item.getQuantity() > 0){
-                io.print(
-                    item.getName() + " || " +
-                    item.getPrice() + " || " +
-                    item.getQuantity()
-                );
-            }
-        }
     }
 
     public String getItemName(){
@@ -42,6 +31,10 @@ public class Vending_Machine_View {
     public BigDecimal insertMoney(){
         io.print(" = = = = = INSERTING MONEY = = = = =");
         return io.readBigDecimal("How much money would you like to insert?");
+    }
+
+    public void showFunds(BigDecimal funds){
+       io.print("You have $" + funds.toString() + " remaining");
     }
 
     public void buyItem(Item item){
@@ -58,6 +51,22 @@ public class Vending_Machine_View {
         io.print("There are " + Integer.toString(item.getQuantity()) + " " + item.getName() + " remaining.");
     }
 
+    public void showAllItems(List<Item> items){
+        for(Item item: items){
+            if(item.getQuantity() > 0){
+                io.print(
+                        item.getName() + " || " +
+                                "$" + item.getPrice() + " || " +
+                                item.getQuantity() + " remaining"
+                );
+            }
+        }
+    }
+
+    public void welcomeMsg(){
+        io.print(" Welcome To My Vending Machine ");
+    }
+
     public void exitMsg(){
         io.print("Exited Program");
     }
@@ -66,7 +75,7 @@ public class Vending_Machine_View {
         io.print("Command Not Recognized");
     }
 
-    public void seperator(){ io.print(" = = = = = = = = = = "); }
+    public void seperator(){ io.print(" = = = = = = = = = = = = = = = = = ="); }
 
 
 }

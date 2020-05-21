@@ -1,6 +1,5 @@
 package main.com.vendingmachine.controller;
 
-import main.com.vendingmachine.dao.*;
 import main.com.vendingmachine.dto.*;
 import main.com.vendingmachine.exceptions.InsufficientFundsException;
 import main.com.vendingmachine.view.*;
@@ -10,18 +9,15 @@ import main.com.vendingmachine.exceptions.NoItemInventoryException;
 import java.math.BigDecimal;
 import java.util.List;
 
-
 public class Vending_Machine_Controller {
 
     private Vending_Machine_Service service;
     private Vending_Machine_View view;
     private Vending_Machine_IO io = new Vending_Machine_IO_Impl();
-    private BigDecimal funds;
 
     public Vending_Machine_Controller(Vending_Machine_Service service, Vending_Machine_View view){
         this.service = service;
         this.view = view;
-        this.funds = new BigDecimal("0.0");
     }
 
     public void run() throws NoItemInventoryException, InsufficientFundsException {
@@ -30,6 +26,8 @@ public class Vending_Machine_Controller {
         int menuSelection;
 
         initializeMachine();
+        showAllItems();
+        insertMoney();
 
         while(keepGoing){
 
@@ -52,6 +50,9 @@ public class Vending_Machine_Controller {
                     insertMoney();
                     break;
                 case 6:
+                    showBalance();
+                    break;
+                case 7:
                     exitMessage();
                     keepGoing = false;
                     break;
@@ -63,6 +64,7 @@ public class Vending_Machine_Controller {
 
     public void initializeMachine(){
         service.initialize();
+        view.welcomeMsg();
     }
 
     public int getMenuSelection(){
@@ -70,15 +72,15 @@ public class Vending_Machine_Controller {
     }
 
     public void buyItem() throws NoItemInventoryException, InsufficientFundsException {
-        view.seperator();
         String item_name = view.getItemName();
-        Item item = service.buyItem(item_name, this.funds);
+        Item item = service.buyItem(item_name);
         view.buyItem(item);
+        BigDecimal funds = service.getFunds();
+        view.showFunds(funds);
         view.seperator();
     }
 
     public void checkItemPrice(){
-        view.seperator();
         String item_name = view.getItemName();
         Item item = service.getItem(item_name);
         view.getItemPrice(item);
@@ -86,7 +88,6 @@ public class Vending_Machine_Controller {
     }
 
     public void checkItemQuantity(){
-        view.seperator();
         String item_name = view.getItemName();
         Item item = service.getItem(item_name);
         view.getItemQuantity(item);
@@ -94,15 +95,19 @@ public class Vending_Machine_Controller {
     }
 
     public void showAllItems(){
-        view.seperator();
         List<Item> item_list = service.getAllItems();
         view.showAllItems(item_list);
         view.seperator();
     }
 
     public void insertMoney(){
-        view.seperator();
-        this.funds = view.insertMoney();
+        BigDecimal funds = view.insertMoney();
+        service.addFunds(funds);
+    }
+
+    public void showBalance(){
+        BigDecimal funds = service.getFunds();
+        view.showFunds(funds);
     }
 
     public void exitMessage(){
